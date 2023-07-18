@@ -3,9 +3,9 @@ GIT_VERSION := $(shell git describe --always --dirty)
 
 RM ?= rm -f
 
-.PHONY: all fmt vet lint clean
+.PHONY: all fmt vet clean
 
-all: $(OUT) vet lint
+all: $(OUT) vet 
 
 $(OUT): pdns-etcd3.go $(wildcard src/*.go)
 	@$(MAKE) --no-print-directory fmt
@@ -16,9 +16,6 @@ fmt:
 
 vet:
 	-go vet
-
-lint:
-	-golint ./...
 
 clean:
 	$(RM) $(OUT)
